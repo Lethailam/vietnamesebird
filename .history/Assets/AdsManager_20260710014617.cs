@@ -47,11 +47,7 @@ public class AdsManager : MonoBehaviour
     private bool _interstitialIsLoading;
     private bool _sceneReloadPending;
 
-    [Header("Interstitial Frequency")]
-    [SerializeField, Min(1)]
-    private int _gameOversBeforeInterstitial = 3;
-
-private int _gameOverCountSinceLastInterstitial;
+    
 
     private Coroutine _bannerRetryCoroutine;
 
@@ -821,43 +817,12 @@ private int _gameOverCountSinceLastInterstitial;
 
     public void ShowGameOverAd()
     {
-        _gameOverCountSinceLastInterstitial++;
-
-        Debug.Log(
-            "INTERSTITIAL: Số lần thua hiện tại = " +
-            _gameOverCountSinceLastInterstitial +
-            "/" +
-            _gameOversBeforeInterstitial
-        );
-
-        // Chưa đủ 3 lần thua thì không hiện quảng cáo.
-        if (_gameOverCountSinceLastInterstitial <
-            _gameOversBeforeInterstitial)
-        {
-            Debug.Log(
-                "INTERSTITIAL: Chưa đủ số lần thua, không hiện quảng cáo."
-            );
-
-            // Vẫn đảm bảo quảng cáo được tải sẵn cho lần sau.
-            if (_interstitialAd == null ||
-                !_interstitialAd.CanShowAd())
-            {
-                LoadInterstitial();
-            }
-
-            return;
-        }
-
-        // Đủ 3 lần thua thì mới hiện quảng cáo.
         if (_interstitialAd != null &&
             _interstitialAd.CanShowAd())
         {
             Debug.Log(
-                "INTERSTITIAL: Đủ số lần thua. Hiển thị quảng cáo Game Over."
+                "INTERSTITIAL: Hiển thị quảng cáo Game Over."
             );
-
-            // Reset bộ đếm vì lần này đã hiện quảng cáo.
-            _gameOverCountSinceLastInterstitial = 0;
 
             try
             {
@@ -877,12 +842,10 @@ private int _gameOverCountSinceLastInterstitial;
         else
         {
             Debug.LogWarning(
-                "INTERSTITIAL: Đã đủ số lần thua nhưng quảng cáo chưa sẵn sàng. " +
-                "Sẽ thử lại ở lần Game Over tiếp theo."
+                "INTERSTITIAL: Quảng cáo chưa sẵn sàng. " +
+                "Bỏ qua lần Game Over này."
             );
 
-            // Không reset counter ở đây.
-            // Vì chưa hiện được quảng cáo thì lần thua sau sẽ thử hiện tiếp.
             LoadInterstitial();
         }
     }

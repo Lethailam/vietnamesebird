@@ -1281,6 +1281,7 @@ MonoBehaviour:
   _androidInterstitialAdUnitId: ca-app-pub-1021530035835699/2510122579
   _androidBannerAdUnitId: ca-app-pub-1021530035835699/4856018653
   _bannerRetryDelay: 1
+  _gameOversBeforeInterstitial: 4
 --- !u!4 &270778581
 Transform:
   m_ObjectHideFlags: 0
@@ -5350,8 +5351,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.347904, y: 67}
-  m_SizeDelta: {x: 533.5295, y: 199.614}
+  m_AnchoredPosition: {x: -0.000026703, y: 60}
+  m_SizeDelta: {x: 425.23, y: 159.096}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179141507
 MonoBehaviour:
@@ -7491,8 +7492,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: 400}
-  m_SizeDelta: {x: 772.5145, y: 191.67114}
+  m_AnchoredPosition: {x: -0.0000076294, y: 400.5442}
+  m_SizeDelta: {x: 573.0016, y: 149.2576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1773553224
 MonoBehaviour:

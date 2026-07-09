@@ -820,72 +820,72 @@ private int _gameOverCountSinceLastInterstitial;
     }
 
     public void ShowGameOverAd()
-    {
-        _gameOverCountSinceLastInterstitial++;
+{
+    _gameOverCountSinceLastInterstitial++;
 
+    Debug.Log(
+        "INTERSTITIAL: Số lần thua hiện tại = " +
+        _gameOverCountSinceLastInterstitial +
+        "/" +
+        _gameOversBeforeInterstitial
+    );
+
+    // Chưa đủ 3 lần thua thì không hiện quảng cáo.
+    if (_gameOverCountSinceLastInterstitial <
+        _gameOversBeforeInterstitial)
+    {
         Debug.Log(
-            "INTERSTITIAL: Số lần thua hiện tại = " +
-            _gameOverCountSinceLastInterstitial +
-            "/" +
-            _gameOversBeforeInterstitial
+            "INTERSTITIAL: Chưa đủ số lần thua, không hiện quảng cáo."
         );
 
-        // Chưa đủ 3 lần thua thì không hiện quảng cáo.
-        if (_gameOverCountSinceLastInterstitial <
-            _gameOversBeforeInterstitial)
+        // Vẫn đảm bảo quảng cáo được tải sẵn cho lần sau.
+        if (_interstitialAd == null ||
+            !_interstitialAd.CanShowAd())
         {
-            Debug.Log(
-                "INTERSTITIAL: Chưa đủ số lần thua, không hiện quảng cáo."
-            );
-
-            // Vẫn đảm bảo quảng cáo được tải sẵn cho lần sau.
-            if (_interstitialAd == null ||
-                !_interstitialAd.CanShowAd())
-            {
-                LoadInterstitial();
-            }
-
-            return;
+            LoadInterstitial();
         }
 
-        // Đủ 3 lần thua thì mới hiện quảng cáo.
-        if (_interstitialAd != null &&
-            _interstitialAd.CanShowAd())
+        return;
+    }
+
+    // Đủ 3 lần thua thì mới hiện quảng cáo.
+    if (_interstitialAd != null &&
+        _interstitialAd.CanShowAd())
+    {
+        Debug.Log(
+            "INTERSTITIAL: Đủ số lần thua. Hiển thị quảng cáo Game Over."
+        );
+
+        // Reset bộ đếm vì lần này đã hiện quảng cáo.
+        _gameOverCountSinceLastInterstitial = 0;
+
+        try
         {
-            Debug.Log(
-                "INTERSTITIAL: Đủ số lần thua. Hiển thị quảng cáo Game Over."
-            );
-
-            // Reset bộ đếm vì lần này đã hiện quảng cáo.
-            _gameOverCountSinceLastInterstitial = 0;
-
-            try
-            {
-                _interstitialAd.Show();
-            }
-            catch (Exception exception)
-            {
-                Debug.LogWarning(
-                    "INTERSTITIAL: Lỗi khi hiển thị.\n" +
-                    exception
-                );
-
-                DestroyInterstitialSafely();
-                LoadInterstitial();
-            }
+            _interstitialAd.Show();
         }
-        else
+        catch (Exception exception)
         {
             Debug.LogWarning(
-                "INTERSTITIAL: Đã đủ số lần thua nhưng quảng cáo chưa sẵn sàng. " +
-                "Sẽ thử lại ở lần Game Over tiếp theo."
+                "INTERSTITIAL: Lỗi khi hiển thị.\n" +
+                exception
             );
 
-            // Không reset counter ở đây.
-            // Vì chưa hiện được quảng cáo thì lần thua sau sẽ thử hiện tiếp.
+            DestroyInterstitialSafely();
             LoadInterstitial();
         }
     }
+    else
+    {
+        Debug.LogWarning(
+            "INTERSTITIAL: Đã đủ số lần thua nhưng quảng cáo chưa sẵn sàng. " +
+            "Sẽ thử lại ở lần Game Over tiếp theo."
+        );
+
+        // Không reset counter ở đây.
+        // Vì chưa hiện được quảng cáo thì lần thua sau sẽ thử hiện tiếp.
+        LoadInterstitial();
+    }
+}
 
     private void DestroyInterstitialSafely()
     {
