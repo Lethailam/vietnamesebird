@@ -23,35 +23,29 @@ public class FlyBehavior : MonoBehaviour
     [SerializeField, Min(0f)] private float _screenEdgePadding = 0.02f;
 
     [Header("Death Fall Effect")]
-    [Tooltip("Chim văng nhẹ ra sau bao xa. Giá trị nhỏ thôi, ví dụ 0.03 - 0.08.")]
-    [SerializeField] private float _hitPushDistance = 0.05f;
+    [Tooltip("Chim văng nhẹ ra sau bao xa. Giá trị nhỏ thôi, ví dụ 0.08 - 0.18.")]
+    [SerializeField] private float _hitPushDistance = 0.12f;
 
     [Tooltip("Thời gian chim văng nhẹ ra sau.")]
-    [SerializeField] private float _hitPushDuration = 0.10f;
+    [SerializeField] private float _hitPushDuration = 0.12f;
 
     [Tooltip("Tốc độ rơi ban đầu sau khi va chạm.")]
-    [SerializeField] private float _fallStartSpeed = 0.55f;
+    [SerializeField] private float _fallStartSpeed = 0.8f;
 
     [Tooltip("Gia tốc rơi. Càng nhỏ thì rơi càng từ từ.")]
-    [SerializeField] private float _fallAcceleration = 1.1f;
+    [SerializeField] private float _fallAcceleration = 1.8f;
 
     [Tooltip("Tốc độ rơi tối đa.")]
-    [SerializeField] private float _fallMaxSpeed = 1.8f;
+    [SerializeField] private float _fallMaxSpeed = 2.6f;
 
-    [Tooltip("Tốc độ xoay tròn khi chim đang rơi.")]
-    [SerializeField] private float _fallSpinSpeed = 420f;
+    [Tooltip("Góc nghiêng của chim khi rơi xuống.")]
+    [SerializeField] private float _fallRotationZ = -35f;
 
-    [Tooltip("Góc nằm lại của chim sau khi chạm ground.")]
-    [SerializeField] private float _landRotationZ = -90f;
+    [Tooltip("Tốc độ nghiêng từ từ sang trạng thái rơi.")]
+    [SerializeField] private float _rotateToFallSpeed = 8f;
 
-    [Tooltip("Sau khi chim nằm trên ground, chờ thêm một chút rồi hiện Game Over.")]
-    [SerializeField] private float _gameOverExtraDelay = 0.35f;
-
-    [Tooltip("Điểm mặt đất nơi chim sẽ dừng lại. Nên kéo GroundStopPoint vào đây.")]
-    [SerializeField] private Transform _groundStopPoint;
-
-    [Tooltip("Tinh chỉnh độ cao khi chim nằm trên ground.")]
-    [SerializeField] private float _groundYOffset = 0.03f;
+    [Tooltip("Sau khi chim chạm đáy, chờ thêm một chút rồi hiện Game Over.")]
+    [SerializeField] private float _gameOverExtraDelay = 0.15f;
 
     [Tooltip("Tắt collider sau khi va chạm để chim không va đập liên tục.")]
     [SerializeField] private bool _disableColliderAfterDeath = true;
@@ -244,7 +238,7 @@ public class FlyBehavior : MonoBehaviour
         _isDead = true;
 
         Debug.Log(
-            "BIRD: Va chạm, dừng gameplay, văng nhẹ, xoay tròn và rơi xuống ground."
+            "BIRD: Va chạm, văng nhẹ ra rồi rơi xuống."
         );
 
         if (_freezeGameplayWhenDead)
@@ -255,9 +249,8 @@ public class FlyBehavior : MonoBehaviour
         if (_rb != null)
         {
             /*
-             * Tắt Rigidbody để chim không bị lực vật lý
+             * Tắt mô phỏng Rigidbody để chim không bị lực vật lý
              * làm văng xa khỏi khung hình.
-             * Phần rơi và xoay sẽ được điều khiển thủ công bằng Coroutine.
              */
             _rb.velocity = Vector2.zero;
             _rb.angularVelocity = 0f;
@@ -285,13 +278,13 @@ public class FlyBehavior : MonoBehaviour
 
         _deathCoroutine =
             StartCoroutine(
-                PushBackSpinFallToGround(
+                PushBackThenFallToGround(
                     birdHalfHeight
                 )
             );
     }
 
-    private IEnumerator PushBackSpinFallToGround(
+    private IEnumerator PushBackThenFallToGround(
         float birdHalfHeight
     )
     {
@@ -299,9 +292,9 @@ public class FlyBehavior : MonoBehaviour
             transform.position;
 
         /*
-         * Chim đang đứng gần bên trái màn hình,
+         * Chim đang bay kiểu Flappy từ trái qua phải,
          * cột đi từ phải sang trái.
-         * Khi va chạm, cho chim bật nhẹ về bên trái một chút.
+         * Khi va chạm, cho chim bật nhẹ về bên trái.
          */
         Vector3 pushedPosition =
             startPosition +
@@ -313,10 +306,6 @@ public class FlyBehavior : MonoBehaviour
 
         float elapsedPush = 0f;
 
-        /*
-         * Giai đoạn 1:
-         * Chim văng nhẹ ra vài pixel.
-         */
         while (elapsedPush < _hitPushDuration)
         {
             float deltaTime =
@@ -329,6 +318,10 @@ public class FlyBehavior : MonoBehaviour
                     elapsedPush / _hitPushDuration
                 );
 
+            /*
+             * SmoothStep giúp cú bật nhẹ mềm hơn,
+             * không bị giật.
+             */
             float smoothT =
                 Mathf.SmoothStep(0f, 1f, t);
 
@@ -339,14 +332,16 @@ public class FlyBehavior : MonoBehaviour
                     smoothT
                 );
 
-            /*
-             * Xoay rất nhẹ ngay lúc bật ra.
-             */
-            transform.Rotate(
-                0f,
-                0f,
-                _fallSpinSpeed * 0.35f * deltaTime
-            );
+            transform.rotation =
+                Quaternion.Lerp(
+                    transform.rotation,
+                    Quaternion.Euler(
+                        0f,
+                        0f,
+                        _fallRotationZ
+                    ),
+                    deltaTime * _rotateToFallSpeed
+                );
 
             yield return null;
         }
@@ -354,15 +349,7 @@ public class FlyBehavior : MonoBehaviour
         float fallSpeed =
             _fallStartSpeed;
 
-        float landingY =
-            GetLandingY(birdHalfHeight);
-
-        /*
-         * Giai đoạn 2:
-         * Chim xoay tròn trong lúc rơi.
-         * Không cho rơi xuyên qua ground.
-         */
-        while (transform.position.y > landingY)
+        while (!HasTouchedBottom(birdHalfHeight))
         {
             float deltaTime =
                 Time.unscaledDeltaTime;
@@ -383,52 +370,28 @@ public class FlyBehavior : MonoBehaviour
                 fallSpeed * deltaTime;
 
             /*
-             * Giữ X cố định sau cú văng nhẹ.
-             * Như vậy chim không biến mất khỏi khung hình.
+             * Giữ X gần như cố định sau cú văng nhẹ.
+             * Như vậy chim sẽ không biến mất khỏi khung hình.
              */
             currentPosition.x =
                 pushedPosition.x;
 
-            /*
-             * Chặn chim lại tại mặt ground.
-             */
-            if (currentPosition.y <= landingY)
-            {
-                currentPosition.y = landingY;
-            }
-
             transform.position =
                 currentPosition;
 
-            /*
-             * Xoay tròn trong lúc rơi.
-             */
-            transform.Rotate(
-                0f,
-                0f,
-                _fallSpinSpeed * deltaTime
-            );
+            transform.rotation =
+                Quaternion.Lerp(
+                    transform.rotation,
+                    Quaternion.Euler(
+                        0f,
+                        0f,
+                        _fallRotationZ
+                    ),
+                    deltaTime * _rotateToFallSpeed
+                );
 
             yield return null;
         }
-
-        /*
-         * Giai đoạn 3:
-         * Chim nằm lại trên ground.
-         */
-        transform.position =
-            new Vector3(
-                pushedPosition.x,
-                landingY,
-                transform.position.z
-            );
-
-        transform.rotation =
-            Quaternion.Euler(
-                0f,
-                0f,
-                _landRotationZ
-            );
 
         if (_gameOverExtraDelay > 0f)
         {
@@ -449,30 +412,13 @@ public class FlyBehavior : MonoBehaviour
         }
     }
 
-    private float GetLandingY(
+    private bool HasTouchedBottom(
         float birdHalfHeight
     )
     {
-        /*
-         * Cách chuẩn nhất:
-         * Tạo Empty Object tên GroundStopPoint,
-         * đặt tại mặt trên của ground,
-         * rồi kéo vào ô Ground Stop Point trong Inspector.
-         */
-        if (_groundStopPoint != null)
-        {
-            return _groundStopPoint.position.y +
-                   birdHalfHeight +
-                   _groundYOffset;
-        }
-
-        /*
-         * Nếu chưa gán GroundStopPoint,
-         * tạm lấy mép dưới màn hình làm điểm dừng.
-         */
         if (_gameCamera == null)
         {
-            return transform.position.y;
+            return false;
         }
 
         float distanceFromCamera = Mathf.Abs(
@@ -489,19 +435,19 @@ public class FlyBehavior : MonoBehaviour
                 )
             ).y;
 
-        return screenBottom +
-               birdHalfHeight +
-               _groundYOffset;
+        float birdBottom =
+            transform.position.y - birdHalfHeight;
+
+        return birdBottom <=
+               screenBottom + _screenEdgePadding;
     }
 
     private void FreezeGameplayObjects()
     {
         /*
-         * Không dùng Time.timeScale = 0 ở đây.
-         * Vì nếu Time.timeScale = 0 thì mọi thứ bị pause cứng.
-         *
-         * Ta chỉ tắt các script làm pipe/ground di chuyển.
-         * Chim vẫn rơi bằng Coroutine dùng Time.unscaledDeltaTime.
+         * Không dùng Time.timeScale = 0 tại đây.
+         * Ta chỉ dừng các object gameplay.
+         * Chim vẫn rơi bằng Coroutine dùng unscaledDeltaTime.
          */
 
         PipeSpawner[] pipeSpawners =
