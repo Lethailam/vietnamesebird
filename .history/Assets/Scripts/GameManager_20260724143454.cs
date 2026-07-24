@@ -343,51 +343,8 @@ public class GameManager : MonoBehaviour
     // GAME OVER
     // =========================================================
 
-    public void GameOver()
-    {
-        if (!_gameStarted)
-        {
-            return;
-        }
+            }
 
-        _gameStarted = false;
-
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.PlayGameOver();
-        }
-
-        if (_startPanel != null)
-            _startPanel.SetActive(false);
-
-        if (_shopPanel != null)
-            _shopPanel.SetActive(false);
-
-        if (_mapPanel != null)
-            _mapPanel.SetActive(false);
-
-        if (_gameOverCanvas != null)
-            _gameOverCanvas.SetActive(true);
-
-        if (_gameplayHUD != null)
-            _gameplayHUD.SetActive(false);
-
-        Time.timeScale = 0f;
-
-        if (AdsManager.Instance != null)
-        {
-            // Game Over không hiển thị Banner.
-            AdsManager.Instance.HideBanner();
-        }
-        if (_showAdCoroutine != null)
-        {
-            StopCoroutine(_showAdCoroutine);
-        }
-        _showAdCoroutine =
-        StartCoroutine(
-            ShowGameOverAdAfterDelay()
-        );
-    }
 
     // =========================================================
     // ADS HELPERS
@@ -410,18 +367,6 @@ public class GameManager : MonoBehaviour
             );
         }
     }
-
-    private IEnumerator ShowGameOverAdAfterDelay()
-{
-    yield return new WaitForSecondsRealtime(
-        _gameOverAdDelay
-    );
-
-    if (AdsManager.Instance != null)
-    {
-        AdsManager.Instance.ShowGameOverAd();
-    }
-}
 
     private void HideBanner()
     {

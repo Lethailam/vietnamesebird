@@ -2474,56 +2474,56 @@ MonoBehaviour:
     unlockedByDefault: 1
   - skinId: Green_Bird
     skinName: Chim xanh
-    price: 2
+    price: 100
     wingUpSprite: {fileID: -877543212, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingMidSprite: {fileID: -278343336, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingDownSprite: {fileID: 495875942, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     unlockedByDefault: 0
   - skinId: Orange_Bird
     skinName: Chim cam
-    price: 3
+    price: 150
     wingUpSprite: {fileID: -1468617824, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingMidSprite: {fileID: -1144829119, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingDownSprite: {fileID: 2045859509, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     unlockedByDefault: 0
   - skinId: Farm_Bird
     skinName: "Chim n\xF4ng d\xE2n"
-    price: 4
+    price: 200
     wingUpSprite: {fileID: 733280164, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingMidSprite: {fileID: 15357999, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingDownSprite: {fileID: 2090180454, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     unlockedByDefault: 0
   - skinId: Bird_dance
     skinName: "Chim m\xFAa"
-    price: 5
+    price: 250
     wingUpSprite: {fileID: -1683889194, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingMidSprite: {fileID: 284428783, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingDownSprite: {fileID: 340101854, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     unlockedByDefault: 0
   - skinId: Copper_Bird
     skinName: "Chim \u0111\u1ED3ng"
-    price: 6
+    price: 300
     wingUpSprite: {fileID: -1410053115, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingMidSprite: {fileID: -2121862575, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingDownSprite: {fileID: 684898593, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     unlockedByDefault: 0
   - skinId: Lacviet_Bird
     skinName: "Chim L\u1EA1c"
-    price: 7
+    price: 350
     wingUpSprite: {fileID: 104813965, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingMidSprite: {fileID: 1838915696, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingDownSprite: {fileID: 1306469884, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     unlockedByDefault: 0
   - skinId: Boat_Bird
     skinName: "Chim thuy\u1EC1n"
-    price: 8
+    price: 400
     wingUpSprite: {fileID: 1036616330, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingMidSprite: {fileID: -1478397722, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingDownSprite: {fileID: -139865428, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     unlockedByDefault: 0
   - skinId: Bird_10
     skinName: "Chim L\xE2n"
-    price: 9
+    price: 450
     wingUpSprite: {fileID: 148980395, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingMidSprite: {fileID: -133102723, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
     wingDownSprite: {fileID: 1280613501, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
@@ -4256,6 +4256,7 @@ MonoBehaviour:
   _mapPanel: {fileID: 1857953304}
   _pipeSpawner: {fileID: 369108885}
   _flyBehavior: {fileID: 889042070}
+  _gameOverAdDelay: 0.8
   _gameplayHUD: {fileID: 1740509085}
 --- !u!4 &906451712
 Transform:

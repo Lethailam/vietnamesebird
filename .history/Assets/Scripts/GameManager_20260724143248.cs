@@ -26,11 +26,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private FlyBehavior _flyBehavior;
 
-    [Header("Ads Delay")]
-    [SerializeField] private float _gameOverAdDelay = 0.8f;
-
-    private Coroutine _showAdCoroutine;
-
     [SerializeField]
     private GameObject _gameplayHUD;
 
@@ -378,15 +373,16 @@ public class GameManager : MonoBehaviour
         {
             // Game Over không hiển thị Banner.
             AdsManager.Instance.HideBanner();
+
+            // Hiển thị Interstitial.
+            AdsManager.Instance.ShowGameOverAd();
         }
-        if (_showAdCoroutine != null)
+        else
         {
-            StopCoroutine(_showAdCoroutine);
+            Debug.LogWarning(
+                "GAME MANAGER: Không tìm thấy AdsManager.Instance."
+            );
         }
-        _showAdCoroutine =
-        StartCoroutine(
-            ShowGameOverAdAfterDelay()
-        );
     }
 
     // =========================================================
@@ -410,18 +406,6 @@ public class GameManager : MonoBehaviour
             );
         }
     }
-
-    private IEnumerator ShowGameOverAdAfterDelay()
-{
-    yield return new WaitForSecondsRealtime(
-        _gameOverAdDelay
-    );
-
-    if (AdsManager.Instance != null)
-    {
-        AdsManager.Instance.ShowGameOverAd();
-    }
-}
 
     private void HideBanner()
     {

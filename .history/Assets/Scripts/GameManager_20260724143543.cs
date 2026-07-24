@@ -411,18 +411,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator ShowGameOverAdAfterDelay()
-{
-    yield return new WaitForSecondsRealtime(
-        _gameOverAdDelay
-    );
-
-    if (AdsManager.Instance != null)
-    {
-        AdsManager.Instance.ShowGameOverAd();
-    }
-}
-
     private void HideBanner()
     {
         Debug.Log(

@@ -379,14 +379,13 @@ public class GameManager : MonoBehaviour
             // Game Over không hiển thị Banner.
             AdsManager.Instance.HideBanner();
         }
-        if (_showAdCoroutine != null)
+        
+        else
         {
-            StopCoroutine(_showAdCoroutine);
+            Debug.LogWarning(
+                "GAME MANAGER: Không tìm thấy AdsManager.Instance."
+            );
         }
-        _showAdCoroutine =
-        StartCoroutine(
-            ShowGameOverAdAfterDelay()
-        );
     }
 
     // =========================================================
@@ -410,18 +409,6 @@ public class GameManager : MonoBehaviour
             );
         }
     }
-
-    private IEnumerator ShowGameOverAdAfterDelay()
-{
-    yield return new WaitForSecondsRealtime(
-        _gameOverAdDelay
-    );
-
-    if (AdsManager.Instance != null)
-    {
-        AdsManager.Instance.ShowGameOverAd();
-    }
-}
 
     private void HideBanner()
     {

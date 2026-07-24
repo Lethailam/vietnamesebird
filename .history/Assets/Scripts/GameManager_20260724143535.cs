@@ -383,10 +383,12 @@ public class GameManager : MonoBehaviour
         {
             StopCoroutine(_showAdCoroutine);
         }
-        _showAdCoroutine =
-        StartCoroutine(
-            ShowGameOverAdAfterDelay()
-        );
+        else
+        {
+            Debug.LogWarning(
+                "GAME MANAGER: Không tìm thấy AdsManager.Instance."
+            );
+        }
     }
 
     // =========================================================
@@ -410,18 +412,6 @@ public class GameManager : MonoBehaviour
             );
         }
     }
-
-    private IEnumerator ShowGameOverAdAfterDelay()
-{
-    yield return new WaitForSecondsRealtime(
-        _gameOverAdDelay
-    );
-
-    if (AdsManager.Instance != null)
-    {
-        AdsManager.Instance.ShowGameOverAd();
-    }
-}
 
     private void HideBanner()
     {
