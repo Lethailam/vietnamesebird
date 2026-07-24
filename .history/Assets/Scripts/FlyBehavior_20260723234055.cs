@@ -139,11 +139,6 @@ public class FlyBehavior : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        ApplySelectedBirdSkin();
-    }
-
     private void FixedUpdate()
     {
         if (_rb == null || _isDead)

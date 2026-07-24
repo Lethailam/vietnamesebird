@@ -140,9 +140,9 @@ public class FlyBehavior : MonoBehaviour
     }
 
     private void Start()
-    {
-        ApplySelectedBirdSkin();
-    }
+{
+    ApplySelectedBirdSkin();
+}
 
     private void FixedUpdate()
     {

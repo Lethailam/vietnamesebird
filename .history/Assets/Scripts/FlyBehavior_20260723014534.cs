@@ -11,7 +11,6 @@ public class FlyBehavior : MonoBehaviour
     [Header("Wing Animation")]
     [SerializeField] private BirdWingAnimator _wingAnimator;
 
-
     [Header("Anti Spam")]
     [Tooltip("Khoảng nghỉ rất ngắn giữa 2 lần vỗ cánh.")]
     [SerializeField] private float _flapCooldown = 0.08f;
@@ -131,17 +130,7 @@ public class FlyBehavior : MonoBehaviour
             {
                 AudioManager.Instance.PlayFly();
             }
-
-            if (_wingAnimator != null)
-            {
-                _wingAnimator.FlapOnce();
-            }
         }
-    }
-
-    private void Start()
-    {
-        ApplySelectedBirdSkin();
     }
 
     private void FixedUpdate()
@@ -574,41 +563,5 @@ public class FlyBehavior : MonoBehaviour
             allRigidbodies[i].angularVelocity =
                 0f;
         }
-    }
-
-    private void ApplySelectedBirdSkin()
-    {
-        if (_wingAnimator == null)
-        {
-            return;
-        }
-
-        if (BirdSkinManager.Instance == null)
-        {
-            Debug.LogWarning(
-                "Không tìm thấy BirdSkinManager.Instance."
-            );
-
-            return;
-        }
-
-        BirdSkinData selectedSkin =
-            BirdSkinManager.Instance.GetSelectedSkin();
-
-        if (selectedSkin == null)
-        {
-            Debug.LogWarning(
-                "Không tìm thấy selected bird skin."
-            );
-
-            return;
-        }
-
-        _wingAnimator.SetWingSprites(
-            selectedSkin.wingUpSprite,
-            selectedSkin.wingMidSprite,
-            selectedSkin.wingDownSprite,
-            true
-        );
     }
 }

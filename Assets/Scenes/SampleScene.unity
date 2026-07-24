@@ -2435,6 +2435,114 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &571258229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 571258231}
+  - component: {fileID: 571258230}
+  m_Layer: 0
+  m_Name: BirdSkinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &571258230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571258229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ecf0958f8c9ee459a9a1132b50b54c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _birdSkins:
+  - skinId: red_bird
+    skinName: "Chim \u0111\u1ECF"
+    price: 0
+    wingUpSprite: {fileID: -1173695438, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingMidSprite: {fileID: -197671217, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingDownSprite: {fileID: -1903693310, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    unlockedByDefault: 1
+  - skinId: Green_Bird
+    skinName: Chim xanh
+    price: 2
+    wingUpSprite: {fileID: -877543212, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingMidSprite: {fileID: -278343336, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingDownSprite: {fileID: 495875942, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    unlockedByDefault: 0
+  - skinId: Orange_Bird
+    skinName: Chim cam
+    price: 3
+    wingUpSprite: {fileID: -1468617824, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingMidSprite: {fileID: -1144829119, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingDownSprite: {fileID: 2045859509, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    unlockedByDefault: 0
+  - skinId: Farm_Bird
+    skinName: "Chim n\xF4ng d\xE2n"
+    price: 4
+    wingUpSprite: {fileID: 733280164, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingMidSprite: {fileID: 15357999, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingDownSprite: {fileID: 2090180454, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    unlockedByDefault: 0
+  - skinId: Bird_dance
+    skinName: "Chim m\xFAa"
+    price: 5
+    wingUpSprite: {fileID: -1683889194, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingMidSprite: {fileID: 284428783, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingDownSprite: {fileID: 340101854, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    unlockedByDefault: 0
+  - skinId: Copper_Bird
+    skinName: "Chim \u0111\u1ED3ng"
+    price: 6
+    wingUpSprite: {fileID: -1410053115, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingMidSprite: {fileID: -2121862575, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingDownSprite: {fileID: 684898593, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    unlockedByDefault: 0
+  - skinId: Lacviet_Bird
+    skinName: "Chim L\u1EA1c"
+    price: 7
+    wingUpSprite: {fileID: 104813965, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingMidSprite: {fileID: 1838915696, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingDownSprite: {fileID: 1306469884, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    unlockedByDefault: 0
+  - skinId: Boat_Bird
+    skinName: "Chim thuy\u1EC1n"
+    price: 8
+    wingUpSprite: {fileID: 1036616330, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingMidSprite: {fileID: -1478397722, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingDownSprite: {fileID: -139865428, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    unlockedByDefault: 0
+  - skinId: Bird_10
+    skinName: "Chim L\xE2n"
+    price: 9
+    wingUpSprite: {fileID: 148980395, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingMidSprite: {fileID: -133102723, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    wingDownSprite: {fileID: 1280613501, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+    unlockedByDefault: 0
+--- !u!4 &571258231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571258229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 453.90048, y: 968.22754, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &613602872
 GameObject:
   m_ObjectHideFlags: 0
@@ -3906,6 +4014,7 @@ GameObject:
   - component: {fileID: 889042066}
   - component: {fileID: 889042065}
   - component: {fileID: 889042070}
+  - component: {fileID: 889042071}
   m_Layer: 0
   m_Name: Mobile - Flappy Bird - Miscellaneous - Version 1.2 Sprites_74
   m_TagString: Player
@@ -4077,6 +4186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _velocity: 1.5
   _rotationSpeed: 10
+  _wingAnimator: {fileID: 0}
   _flapCooldown: 0.08
   _gameCamera: {fileID: 519420031}
   _birdCollider: {fileID: 889042065}
@@ -4093,6 +4203,24 @@ MonoBehaviour:
   _groundYOffset: 0.03
   _disableColliderAfterDeath: 1
   _freezeGameplayWhenDead: 1
+--- !u!114 &889042071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889042064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31975ef6c00a40b42a2bccb1d6fe78d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 889042068}
+  _wingUpSprite: {fileID: -1173695438, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+  _wingMidSprite: {fileID: -197671217, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+  _wingDownSprite: {fileID: -1903693310, guid: 60a8bf8ae4237f84ea4a918fc42b570e, type: 3}
+  _framesPerSecond: 10
+  _playOnStart: 1
 --- !u!1 &906451710
 GameObject:
   m_ObjectHideFlags: 0
@@ -8393,16 +8521,7 @@ MonoBehaviour:
   _itemPrefab: {fileID: 7369466559768582645, guid: 8f9cf7062d153044895e4a1b3169e2e3, type: 3}
   _coinAmountText: {fileID: 970856082}
   _playerSpriteRenderer: {fileID: 889042068}
-  _birdSprites:
-  - {fileID: 935023939, guid: 4121031d4116e5645bcdfc634ee267b5, type: 3}
-  - {fileID: -1913264157, guid: 4121031d4116e5645bcdfc634ee267b5, type: 3}
-  - {fileID: 943834780, guid: 4121031d4116e5645bcdfc634ee267b5, type: 3}
-  - {fileID: 332606915, guid: 4121031d4116e5645bcdfc634ee267b5, type: 3}
-  - {fileID: 455414689, guid: 4121031d4116e5645bcdfc634ee267b5, type: 3}
-  - {fileID: -2000152849, guid: 4121031d4116e5645bcdfc634ee267b5, type: 3}
-  - {fileID: 1486560107, guid: 4121031d4116e5645bcdfc634ee267b5, type: 3}
-  - {fileID: 869823216, guid: 4121031d4116e5645bcdfc634ee267b5, type: 3}
-  _birdPrices: 0000000064000000c80000002c01000090010000f401000058020000bc020000
+  _playerWingAnimator: {fileID: 0}
 --- !u!1 &2025016235
 GameObject:
   m_ObjectHideFlags: 0
@@ -8543,3 +8662,4 @@ SceneRoots:
   - {fileID: 713920795}
   - {fileID: 888402411}
   - {fileID: 270778581}
+  - {fileID: 571258231}

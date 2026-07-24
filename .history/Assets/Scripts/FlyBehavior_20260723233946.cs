@@ -139,11 +139,6 @@ public class FlyBehavior : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        ApplySelectedBirdSkin();
-    }
-
     private void FixedUpdate()
     {
         if (_rb == null || _isDead)
@@ -574,41 +569,5 @@ public class FlyBehavior : MonoBehaviour
             allRigidbodies[i].angularVelocity =
                 0f;
         }
-    }
-
-    private void ApplySelectedBirdSkin()
-    {
-        if (_wingAnimator == null)
-        {
-            return;
-        }
-
-        if (BirdSkinManager.Instance == null)
-        {
-            Debug.LogWarning(
-                "Không tìm thấy BirdSkinManager.Instance."
-            );
-
-            return;
-        }
-
-        BirdSkinData selectedSkin =
-            BirdSkinManager.Instance.GetSelectedSkin();
-
-        if (selectedSkin == null)
-        {
-            Debug.LogWarning(
-                "Không tìm thấy selected bird skin."
-            );
-
-            return;
-        }
-
-        _wingAnimator.SetWingSprites(
-            selectedSkin.wingUpSprite,
-            selectedSkin.wingMidSprite,
-            selectedSkin.wingDownSprite,
-            true
-        );
     }
 }
